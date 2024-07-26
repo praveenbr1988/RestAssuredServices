@@ -5,7 +5,7 @@ import static io.restassured.RestAssured.given;
 import java.util.ResourceBundle;
 
 
-import api.payloads.User;
+import api.payloads.UsingPOJO.UserPojo;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
@@ -18,7 +18,7 @@ public class UserEndpointsUsingProps {
 		return routes;
 	}
 	
-	public static Response createUser(User payLoad){
+	public static Response createUser(UserPojo payLoad){
 		
 		String post_url=getURL().getString("post_url");
 		
@@ -44,7 +44,7 @@ public class UserEndpointsUsingProps {
 		return response;
 	}
 	
-	public static Response updateUser(String userName, User payLoad){
+	public static Response updateUser(String userName, UserPojo payLoad){
 		
 		String update_url=getURL().getString("update_url");
 		

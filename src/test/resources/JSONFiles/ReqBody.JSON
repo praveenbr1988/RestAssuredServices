@@ -1,0 +1,24 @@
+{
+  "id": "3432",
+  "FirstName": "Praveen",
+  "LastName": "Br",
+  "Age": "35",
+  "Profession": "QE Architect",
+  "Address": {
+    "HouseNo": "342",
+    "StreetName": "sdgfsfgsd",
+    "ZipCOde": "2354235"
+  },
+  "EmployerInfo": [
+    {
+      "EmployerName": "Apple",
+      "StartDate": "05-05-2000",
+      "EndDate": "05-05-2005"
+    },
+    {
+      "EmployerName": "Facebook",
+      "StartDate": "05-05-2005",
+      "EndDate": "05-05-2010"
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 package api.tests;
 
 import api.endpoints.UserEndPoints;
-import api.payloads.User;
+import api.payloads.UsingPOJO.UserPojo;
 import com.github.javafaker.Faker;
 import io.restassured.response.Response;
 import org.testng.Assert;
@@ -11,12 +11,12 @@ import org.testng.annotations.Test;
 public class FakerUserTests {
 
     Faker faker;
-    User userPayLoad;
+    UserPojo userPayLoad;
 
     @BeforeClass
     public void setupData(){
         faker = new Faker();
-        userPayLoad= new User();
+        userPayLoad= new UserPojo();
         userPayLoad.setId(faker.idNumber().hashCode());
         userPayLoad.setFirstName(faker.name().firstName());
         userPayLoad.setLastName(faker.name().lastName());

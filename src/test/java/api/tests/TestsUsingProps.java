@@ -1,7 +1,7 @@
 package api.tests;
 
 import api.endpoints.UserEndpointsUsingProps;
-import api.payloads.User;
+import api.payloads.UsingPOJO.UserPojo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
@@ -17,14 +17,14 @@ import io.restassured.response.Response;
 public class TestsUsingProps {
 
 	Faker faker;
-	User userPayLoad;
+	UserPojo userPayLoad;
 	
 	public Logger logger;
 	
 	@BeforeClass
 	public void setup() {
 		faker = new Faker();
-		userPayLoad = new User();
+		userPayLoad = new UserPojo();
 		userPayLoad.setId(faker.idNumber().hashCode());
 		userPayLoad.setUsername(faker.name().username());
 		userPayLoad.setFirstName(faker.name().firstName());

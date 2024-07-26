@@ -1,6 +1,6 @@
-package api.payloads;
+package api.payloads.UsingPOJO;
 
-public class User {
+public class UserPojo {
 
     int id;
     String username;
