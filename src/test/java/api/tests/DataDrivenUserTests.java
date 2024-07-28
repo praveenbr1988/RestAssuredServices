@@ -1,6 +1,6 @@
 package api.tests;
 
-import api.payloads.UsingPOJO.UserPojo;
+import api.payloads.Pojos.User;
 import api.endpoints.UserEndPoints;
 import api.utilities.LoggerUtil;
 import org.apache.logging.log4j.Logger;
@@ -14,12 +14,12 @@ import io.restassured.response.Response;
 public class DataDrivenUserTests {
 
 	private static final Logger logger = LoggerUtil.getLogger(DataDrivenUserTests.class);
-	UserPojo userPayLoad;
+	User userPayLoad;
 	
 	@Test(priority=1, dataProvider="AllData",dataProviderClass = DataProviders.class )
 	public void testPostUser(String uId, String uName, String fName, String lName, String uEmail, String pwd, String ph){
 		
-		userPayLoad = new UserPojo();
+		userPayLoad = new User();
 		userPayLoad.setId(Integer.parseInt(uId));
 		userPayLoad.setUsername(uName);
 		userPayLoad.setFirstName(fName);

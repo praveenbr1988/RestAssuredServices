@@ -1,6 +1,6 @@
 package api.endpoints;
 
-import api.payloads.UsingPOJO.PojoUserInfo;
+import api.payloads.Pojos.UserInfo;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.json.JSONObject;
@@ -28,7 +28,7 @@ public class UserEndPoints3 {
         return res;
     }
 
-    public static Response postReq(PojoUserInfo reqBody, String uri){
+    public static Response postReq(UserInfo reqBody, String uri){
         Response res =
                 given()
                     .contentType(ContentType.JSON)

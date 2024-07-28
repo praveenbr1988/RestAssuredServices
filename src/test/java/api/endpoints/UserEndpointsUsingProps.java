@@ -5,7 +5,7 @@ import static io.restassured.RestAssured.given;
 import java.util.ResourceBundle;
 
 
-import api.payloads.UsingPOJO.UserPojo;
+import api.payloads.Pojos.User;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
@@ -18,14 +18,19 @@ public class UserEndpointsUsingProps {
 		return routes;
 	}
 	
-	public static Response createUser(UserPojo payLoad){
+	public static Response createUser(User payLoad){
 		
 		String post_url=getURL().getString("post_url");
-		
+
+//Serilization is handled by default. we dont need to convert Pojo Java object to JSON
+//		Gson gson = new Gson();
+//		String jsonPayload = gson.toJson(payLoad);
+
 		Response response = given()
 			.contentType(ContentType.JSON)
 			.accept(ContentType.JSON)
 			.body(payLoad)
+//			.body(jsonPayload)
 		.when()
 			.post(post_url);
 		return response;
@@ -44,7 +49,7 @@ public class UserEndpointsUsingProps {
 		return response;
 	}
 	
-	public static Response updateUser(String userName, UserPojo payLoad){
+	public static Response updateUser(String userName, User payLoad){
 		
 		String update_url=getURL().getString("update_url");
 		

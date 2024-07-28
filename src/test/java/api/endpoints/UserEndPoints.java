@@ -3,7 +3,7 @@ package api.endpoints;
 
 //created for CRUD operations
 
-import api.payloads.UsingPOJO.UserPojo;
+import api.payloads.Pojos.User;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
@@ -11,7 +11,7 @@ import static io.restassured.RestAssured.given;
 
 public class UserEndPoints {
 
-    public static Response createUser(UserPojo payload){
+    public static Response createUser(User payload){
 
         Response response = given()
                                 .contentType(ContentType.JSON)
@@ -32,7 +32,7 @@ public class UserEndPoints {
 
     }
 
-    public static Response updateUser(String userName, UserPojo payLoad){
+    public static Response updateUser(String userName, User payLoad){
 
         Response response = given()
                                 .contentType(ContentType.JSON)

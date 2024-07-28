@@ -1,7 +1,7 @@
 package api.tests;
 
 import api.endpoints.UserEndpointsUsingProps;
-import api.payloads.UsingPOJO.UserPojo;
+import api.payloads.Pojos.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
@@ -17,14 +17,14 @@ import io.restassured.response.Response;
 public class TestsUsingProps {
 
 	Faker faker;
-	UserPojo userPayLoad;
+	User userPayLoad;
 	
 	public Logger logger;
 	
 	@BeforeClass
 	public void setup() {
 		faker = new Faker();
-		userPayLoad = new UserPojo();
+		userPayLoad = new User();
 		userPayLoad.setId(faker.idNumber().hashCode());
 		userPayLoad.setUsername(faker.name().username());
 		userPayLoad.setFirstName(faker.name().firstName());
@@ -39,7 +39,7 @@ public class TestsUsingProps {
 		
 	}
 	
-	@Test(priority=1)
+	@Test(priority=1, enabled = true)
 	public void testPostUser(){
 		
 		logger.info("****Creating user*******");
@@ -49,12 +49,13 @@ public class TestsUsingProps {
 		System.out.println("UserName is: "+this.userPayLoad.getUsername());
 		Assert.assertEquals(response.getStatusCode(), 200);
 		System.out.println("tests passed success***");
+		System.out.println("Response Body--"+response.asString());
 		
 		logger.info("****user created*******");
 		
 	}
 	
-	@Test(priority=2)
+	@Test(priority=2, enabled = false)
 	public void testGetUserByName(){
 		
 		logger.info("****Reading user*******");
@@ -67,7 +68,7 @@ public class TestsUsingProps {
 		logger.info("****user read*******");
 	}
 	
-	@Test(priority=3)
+	@Test(priority=3, enabled = false)
 	public void testUpdateUserByName(){
 		
 		//update Data using Payload
@@ -84,7 +85,7 @@ public class TestsUsingProps {
 		
 	}
 	
-	@Test(priority=4)
+	@Test(priority=4, enabled = false)
 	public void testDeleteUserByName(){
 		
 		Response response = UserEndpointsUsingProps.deleteUser(this.userPayLoad.getUsername());

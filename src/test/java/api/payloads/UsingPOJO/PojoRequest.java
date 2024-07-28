@@ -1,15 +1,19 @@
 package api.payloads.UsingPOJO;
 
+import api.payloads.Pojos.CurrentAddress;
+import api.payloads.Pojos.EmployerHistory;
+import api.payloads.Pojos.UserInfo;
+
 public class PojoRequest {
 
-    public static PojoUserInfo reqBody(){
+    public static UserInfo reqBody(){
 
-        PojoCurrentAddress currAddress = new PojoCurrentAddress();
+        CurrentAddress currAddress = new CurrentAddress();
         currAddress.setHouseNo("6332");
         currAddress.setStreet("Durants neck lane");
         currAddress.setZipCode("27616");
 
-        PojoEmployerHistory[] emp = new PojoEmployerHistory[2];
+        EmployerHistory[] emp = new EmployerHistory[2];
         emp[0].setEmployerName("Apple");
         emp[0].setStartDate("05/05/2000");
         emp[0].setEndDate("05/05/2005");
@@ -19,7 +23,7 @@ public class PojoRequest {
 
 
 
-        PojoUserInfo data = new PojoUserInfo();
+        UserInfo data = new UserInfo();
         data.setId(123);
         data.setFirstName("PRaveen");
         data.setLastName("BR");
