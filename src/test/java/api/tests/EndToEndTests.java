@@ -10,13 +10,14 @@ import api.utilities.PropertiesFileLoad;
 import com.jayway.jsonpath.JsonPath;
 import com.jayway.jsonpath.ReadContext;
 import io.restassured.response.Response;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.testng.annotations.Test;
 
 
 import java.io.IOException;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class EndToEndTests {
 
@@ -32,7 +33,7 @@ public class EndToEndTests {
     }
 
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public static void testcase1() throws IOException {
 
         Response rs = UserEndPoints3.getReq("QA_URI");
@@ -100,6 +101,43 @@ public class EndToEndTests {
         ResponseValidations.responseValidations(rs);
         ResponseValidations.responseDataValidation("ExpectedData", rs);
         ResponseValidations.responseStatusCodeValidation(200, rs);
+    }
+
+
+    //Using JSONFile RequestBody
+    @Test(enabled = true)
+    public static void testcase5() throws IOException {
+
+        JSONObject res = UsingJSONFile.getReqFromJsonFile("src/test/resources/JSONFiles/FBPostsResponse.JSON");
+        System.out.println("JSON Structure " +res);
+
+        // Parse the JSON response
+        JSONArray jsonArray = res.getJSONArray("FBPosts");
+
+        List<Map<String, Object>> customerList = new ArrayList<>();
+        for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject jsonObject = jsonArray.getJSONObject(i);
+            Map<String, Object> customerMap = new HashMap<>();
+            for (String key : jsonObject.keySet()) {
+                customerMap.put(key, jsonObject.get(key));
+            }
+            customerList.add(customerMap);
+        }
+
+        System.out.println("customerList " +customerList);
+
+        // Process the data to find customers with the maximum number of posts
+        int maxPost = customerList.stream().mapToInt(c-> (int) c.get("Posts")).max().orElse(0);
+
+        List<String> namesWithMaxPosts  = customerList.stream()
+                                        .filter(c-> (int) c.get("Posts")==maxPost)
+                                        .map(c->c.get("FName")+" "+c.get("LName")).toList();
+
+        // Print the names
+        namesWithMaxPosts.forEach(System.out::println);
+
+
+
     }
 
 

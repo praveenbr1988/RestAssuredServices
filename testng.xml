@@ -10,7 +10,7 @@
     <classes>
 <!--      <class name="api.tests.DataDrivenUserTests"/>-->
 <!--      <class name="api.tests.FakerUserTests"/>-->
-      <class name="api.tests.TestsUsingProps"/>
+      <class name="api.tests.TestMongoDBConnection"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
